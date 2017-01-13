@@ -115,7 +115,7 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
                 if let rate = rate {
                     delayInSeconds = Double(self.audioFile.length - playerTime.sampleTime) / Double(self.audioFile.processingFormat.sampleRate) / Double(rate)
                 } else {
-                    delayInSeconds = Double(self.audioFile.length - playerTime.sampleTime) / Double(self.audioFile.processingFormat.sampleRate)
+                    delayInSeconds = Double(self.audioFile.length - playerTime.sampleTime) / Double(self.audioFile.processingFormat.sampleRate) + 1.5
                 }
             }
             
@@ -181,6 +181,8 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         vaderButton.isEnabled = enabled
         echoButton.isEnabled = enabled
         reverbButton.isEnabled = enabled
+        playButton.isEnabled = enabled
+        distortionButton.isEnabled = enabled
     }
 
     func showAlert(_ title: String, message: String) {
