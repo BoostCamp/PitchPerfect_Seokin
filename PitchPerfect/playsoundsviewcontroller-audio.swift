@@ -81,7 +81,7 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         // node for volume control & distortion
         let distNode = AVAudioUnitDistortion()
         distNode.loadFactoryPreset(.speechAlienChatter)
-        distNode.wetDryMix = 20 * param
+        distNode.preGain = -10 + 15 * param
     
         audioEngine.attach(distNode)
         
@@ -97,7 +97,7 @@ extension PlaySoundsViewController: AVAudioPlayerDelegate {
         } else if reverb == true {
             connectAudioNodes(audioPlayerNode, changeRatePitchNode, reverbNode, audioEngine.outputNode)
         } else if distortion == true {
-            connectAudioNodes(audioPlayerNode, distNode, audioEngine.outputNode)
+            connectAudioNodes(audioPlayerNode, changeRatePitchNode, distNode, audioEngine.outputNode)
         } else if volume == true {
             connectAudioNodes(audioPlayerNode, audioEngine.mainMixerNode, audioEngine.outputNode)
         } else {
